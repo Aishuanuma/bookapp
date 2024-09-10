@@ -1,0 +1,27 @@
+{% extends 'user/base1.html' %}
+{% load static %}
+{% block content %}
+    <table border="1" class="table">
+        <thead>
+            <tr>
+                <th>Book</th>
+                <th>Author</th>
+                <th>Price</th>
+                <th>Image</th>
+                <th colspan="3">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in books%}
+            <tr>
+                <th>{{i.name}}</th>
+                <th>{{i.author}}</th>
+                <th>{{i.price}}</th>
+                <th><img src="{{ book.image.url }}" alt="{{ book.name }}" style="width:100px;height:auto;">
+                </th>
+                <th><a href="{% url 'details' i.id %}" class="btn btn-danger">Details</a></th>
+            </tr>
+        </tbody>
+        {%endfor%}
+    </table>
+{% endblock %}

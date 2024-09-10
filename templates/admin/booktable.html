@@ -1,0 +1,35 @@
+{% extends 'admin/base.html' %}
+{% load static %}
+{% block content %}
+    <table border="1" class="table">
+        <thead>
+            <tr>
+                <th>Book</th>
+                <th>Author</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Image</th>
+                <th colspan="3">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in books%}
+            <tr>
+                <td>{{i.name}}</td>
+                <td>{{i.author}}</td>
+                <td>{{i.price}}</td>
+                <td>{{i.quantity}}</td>
+                <td> {% if i.image %}
+                    <img src="{{ book.image.url }}" alt="{{ book.name }}" width="100" height="100">
+                {% else %}
+                    No image available
+                {% endif %}
+                </td>
+                <td><a href="{% url 'delete' i.id %} " class="btn btn-primary">Delete</a></td>
+                <td><a href="{% url 'update' i.id %}" class="btn btn-success">Update</a></td>
+                <td><a href="{% url 'details' i.id %}" class="btn btn-danger">Details</a></td>
+            </tr>
+        </tbody>
+        {%endfor%}
+    </table>
+{% endblock %}
